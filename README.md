@@ -34,7 +34,7 @@ Optionally, pass the `--serve` argument and you'll have a local webserver to exp
 
 ### Example Usage
 
-Connect to your Nessus instance and download all scans in `csv` format. Output results in `csv` directory
+Connect to your Nessus instance and download all scans in `csv` format. Output results in `csv` directory:
 
 ```
 python3 nexporter.py -t https://127.0.0.1:8834 -u username -p password -o csv
