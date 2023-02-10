@@ -29,8 +29,8 @@ poetry shell && poetry install
 
 ### Getting started
 
-Point nexporter at your Nessus instance and it will export all scans as `csv` and transform them into a `sqlite` database
-Optionally, pass the `--serve` argument and you'll have a local webserver to explore the data
+Point nexporter at your Nessus instance and it will export all scans as `csv` and transform them into a `sqlite` database.
+Optionally, pass the `--serve` argument and you'll have a local webserver to explore the data.
 
 ### Example Usage
 
@@ -45,6 +45,13 @@ If you don't want to pass credentials on the command line, source your username 
 export NESSUS_USER=USERNAME
 export NESSUS_PASS=PASSWORD
 python3 nexporter.py -t https://127.0.0.1:8834
+```
+
+If you don't want to export variables, omission on the command line will prompt you for your password:
+
+```
+python3 nexporter.py -t https://127.0.0.1:8834 -u username -o csv
+Password:
 ```
 
 <br>
