@@ -18,15 +18,6 @@ cd nexporter
 python3 nexporter.py --help
 ```
 
-For development, clone the repository and install it locally using Poetry.
-
-```
-git clone https://github.com/queencitycyber/nexporter
-cd nexporter
-poetry shell && poetry install
-```
-
-
 ### Getting started
 
 Point nexporter at your Nessus instance and it will export all scans as `csv` and transform them into a `sqlite` database.
