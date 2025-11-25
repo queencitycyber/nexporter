@@ -1,0 +1,57 @@
+title: Nexporter - Nessus + VulnCheck KEV + Nuclei Templates Intelligence
+description: |
+  Nessus scan data enriched with VulnCheck KEV and Nuclei template coverage intelligence.
+
+  **Start here:** [exploitable_vulnerabilities](/nexporter/exploitable_vulnerabilities) - All scans combined with exploit links
+
+  Views:
+  - **exploitable_vulnerabilities** - Global view of ALL findings across all scans (start here!)
+  - **v_[scan_name]_exploits** - Per-scan views with exploit links and nuclei coverage
+
+  Tables:
+  - **vulncheck_kev** - Full KEV database (4,000+ entries)
+  - **vulncheck_xdb** - Exploit database links
+  - **nuclei_cve_templates** - Nuclei CVE template coverage
+
+databases:
+  nexporter:
+    tables:
+      exploitable_vulnerabilities:
+        description: |
+          **START HERE** - All Nessus findings from all scans, enriched with VulnCheck KEV and Nuclei template data.
+
+          Key Columns:
+          - **scan_source**: Which scan this finding came from
+          - **exploitable**: "YES" if KEV OR nuclei template exists (combined indicator)
+          - **in_KEV**: "YES" if actively exploited in the wild (VulnCheck KEV)
+          - **initial_access**: "YES" if this is an initial access vulnerability (most critical!)
+          - **has_nuclei_template**: "YES" if a nuclei scanner template exists for this CVE
+          - **nuclei_template_name**: Name of the nuclei template
+          - **nuclei_template_severity**: Severity rating from nuclei template
+          - **exploit_count**: Number of public exploits available (VulnCheck XDB)
+          - **exploit_urls**: Links to exploit PoC code
+
+          Sorted by: Initial Access -> Exploitable -> KEV -> Nuclei -> Severity
+        sort_desc: initial_access
+
+      vulncheck_kev:
+        description: |
+          VulnCheck Known Exploited Vulnerabilities database.
+          Contains ~4,000+ CVEs with exploitation evidence - 175% more than CISA KEV alone.
+        label_column: cve
+
+      vulncheck_xdb:
+        description: |
+          Exploit database links from VulnCheck XDB.
+          Direct links to proof-of-concept exploit code.
+        label_column: cve
+
+      vulncheck_exploitation_sources:
+        description: References to exploitation evidence for each CVE
+        label_column: cve
+
+      nuclei_cve_templates:
+        description: |
+          Nuclei CVE template coverage.
+          Shows which CVEs have nuclei scanner templates available for automated detection.
+        label_column: cve
